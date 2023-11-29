@@ -29,6 +29,9 @@ def main_game_loop(levels): # we modify this as we add more features to the game
             user_guess = display_question(item)
             correct_answer = quiz_items[item]
             score = check_answer(user_guess, correct_answer, score, score_multiplier)
+            if score == "quit":
+                end_game_summary(0, 0)
+                raise SystemExit
             give_feedback(correct_answer, item)
         total_score += score
         print(f"You scored {score} points in {selected_level}.")
@@ -39,23 +42,7 @@ def main_game_loop(levels): # we modify this as we add more features to the game
     return total_score
 
 def display_question(item): 
-    return input(f"Is a '{item}' recyclable? (yes/no): ").strip().lower()
-
-def check_answer(user_guess, correct_answer, score): 
-    if (user_guess == "yes" and correct_answer) or (user_guess == "no" and not correct_answer):
-        print("Correct!")
-        return score + 1
-    else:
-        print("Incorrect!")
-        return score
-
-def check_answer(user_guess, correct_answer, score):
-    if (user_guess == "yes" and correct_answer) or (user_guess == "no" and not correct_answer):
-        print("Correct!")
-        return score + 1
-    else:
-        print("Incorrect!")
-        return score
+    return input(f"Is a '{item}' recyclable? (yes/no/quit): ").strip().lower()
 
 def give_feedback(correct_answer, item):
     explanation = "Recyclable" if correct_answer else "Not recyclable"
@@ -71,6 +58,8 @@ def check_answer(user_guess, correct_answer, score, score_multiplier):
     if (user_guess == "yes" and correct_answer) or (user_guess == "no" and not correct_answer):
         print("Correct!")
         return score + (1 * score_multiplier)
+    elif(user_guess== "quit" ):
+        return "quit"
     else:
         print("Incorrect!")
         return score
@@ -88,6 +77,7 @@ levels = {
 }
 
 if __name__ == "__main__":
+    a =0
     introduction()
     final_score = main_game_loop(levels)
     print(f"\nYour total score is {final_score}.")
