@@ -1,8 +1,48 @@
+from libdw import pyrebase
 def introduction():
     print("Welcome to the Recycling Quiz Game!")
     print("In this game, you'll guess whether certain items are recyclable.")
     print("The higher the level, the more points you can earn.")
     print("Type 'yes' if you think the item is recyclable, and 'no' if not.")
+
+def login(final_score):
+    username = input("Please key in your email: ")  # Example: ctd_is_the_best@ilovectd.com
+    passw = input("Please type your password: ")    # Example: ctdctd
+    dburl = "https://labexample-f5b6a-default-rtdb.asia-southeast1.firebasedatabase.app/"
+    email = username
+    password = passw 
+    apikey = "AIzaSyDvPsb9CRa-_a0RVt7CRuRpnKI38zMqDAM"
+    authdomain = dburl.replace("https://", "")
+
+    config = {
+        "apiKey": apikey,
+        "authDomain": authdomain,
+        "databaseURL": dburl,
+    }
+
+    # Initialize Firebase
+    firebase = pyrebase.initialize_app(config)
+    auth = firebase.auth()
+
+    # Authenticate the user
+    try:
+        user = auth.sign_in_with_email_and_password(email, password)
+    except:
+        print("Authentication failed")
+        return
+
+    db = firebase.database()
+    user = auth.refresh(user['refreshToken'])
+
+    # Update the total score in the database
+    score_key = f"users/{username.replace('.',',')}/score"  # Firebase keys cannot contain '.'
+    db.child(score_key).set(final_score, user['idToken'])
+    print("Your score has been updated in the database.")
+
+    # Retrieve and display the updated score
+    score = db.child(score_key).get(user['idToken']).val()
+    print(f"Your total score is now: {score}")
+
 
 def select_level(levels): # choose different diffculty 
     print("\nAvailable Levels:")
@@ -80,5 +120,6 @@ if __name__ == "__main__":
     a =0
     introduction()
     final_score = main_game_loop(levels)
+    login(final_score)
     print(f"\nYour total score is {final_score}.")
     print("Thank you for playing! Remember, every small step in recycling helps our planet.")
