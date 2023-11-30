@@ -5,12 +5,9 @@ def introduction():
     print("The higher the level, the more points you can earn.")
     print("Type 'quit' if you want to force end the game. However, your progress won't be saved")
 
+
 def login(final_score):
-    username = input("Please key in your email: ")  # Example: ctd_is_the_best@ilovectd.com
-    passw = input("Please type your password: ")    # Example: ctdctd
     dburl = "https://labexample-f5b6a-default-rtdb.asia-southeast1.firebasedatabase.app/"
-    email = username
-    password = passw 
     apikey = "AIzaSyDvPsb9CRa-_a0RVt7CRuRpnKI38zMqDAM"
     authdomain = dburl.replace("https://", "")
 
@@ -23,6 +20,17 @@ def login(final_score):
     # Initialize Firebase
     firebase = pyrebase.initialize_app(config)
     auth = firebase.auth()
+    haveAccount = input("Do you have an account? (yes/no):").strip().lower()
+    if haveAccount == "yes" or haveAccount == "y":
+        email = input("Please key in your email: ")  # Example: ctd_is_the_best@ilovectd.com
+        password = input("Please type your password: ")    # Example: ctdctd
+    else:
+        promptcreate = input("Would you like to create an account? (yes/no):").strip().lower()
+        if promptcreate == "yes" or promptcreate == "y":
+            email = input("Please key in your email: ")
+            password = input("Please create your password: ")
+            userCredentials = auth.create_user_with_email_and_password(email, password)
+            print(userCredentials)
 
     # Authenticate the user
     try:
@@ -34,14 +42,17 @@ def login(final_score):
     db = firebase.database()
     user = auth.refresh(user['refreshToken'])
 
-    # Update the total score in the database
-    score_key = f"users/{username.replace('.',',')}/score"  # Firebase keys cannot contain '.'
-    db.child(score_key).set(final_score, user['idToken'])
-    print("Your score has been updated in the database.")
+    score_key = f"users/{email.replace('.',',')}/score" # Firebase keys cannot contain '.'
+    # Update the total score in the database 
+    previous_score = db.child(score_key).get(user['idToken']).val()
+    if final_score > previous_score:       
+        db.child(score_key).set(final_score, user['idToken'])
+        print("Your highscore has been updated in the database.")    # Retrieve and display the updated score
+        return True
+    else:
+        print(f"Your highscore remains the same at {previous_score}") 
 
-    # Retrieve and display the updated score
-    score = db.child(score_key).get(user['idToken']).val()
-    print(f"Your total score is now: {score}")
+
 
 
 def select_level(levels): # choose different diffculty 
@@ -171,7 +182,6 @@ levels = {
 }
 
 if __name__ == "__main__":
-    a =0
     introduction()
     final_score = main_game_loop(levels)
     login(final_score)
