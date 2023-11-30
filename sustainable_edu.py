@@ -30,7 +30,7 @@ def login(final_score):
             email = input("Please key in your email: ")
             password = input("Please create your password: ")
             userCredentials = auth.create_user_with_email_and_password(email, password)
-            print(userCredentials)
+            #print(userCredentials)
 
     # Authenticate the user
     try:
