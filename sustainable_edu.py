@@ -1,4 +1,5 @@
 from libdw import pyrebase
+from time  import sleep
 import shutil
 width = shutil.get_terminal_size((80, 20)).columns
 screen_width = 156
@@ -11,14 +12,8 @@ def introduction(screen_width):
     print("The higher the level, the more points you can earn.".center(width) + "\n".center(width))
     print('=' * screen_width + "\n")
 
-    user_input = input(" Press space to continue".center(width))
-    if user_input.lower() != " ":
-        print("Invalid Input... Press space to continue")
-        print('=' * screen_width + "\n")
-    
-    
-
-
+    user_input = input(" Press enter to continue".center(width))
+    print('=' * screen_width + "\n")
     print("""
         LEVEL 1 - Yes-No questions 
         LEVEL 2 - Muliple Choice Questions 
@@ -28,13 +23,15 @@ def introduction(screen_width):
     print('-' * screen_width + "\n")
 
 def login(final_score):
-    username = input("Please key in your email: ")  # Example: ctd_is_the_best@ilovectd.com
-    passw = input("Please type your password: ")    # Example: ctdctd
+    password = "ctdctd"
+    # username = input("Please key in your email: ")  # Example: ctd_is_the_best@ilovectd.com
+    # passw = input("Please type your password: ")    # Example: ctdctd
     dburl = "https://labexample-f5b6a-default-rtdb.asia-southeast1.firebasedatabase.app/"
-    email = username
-    password = passw 
+    # email = username
+    # password = passw 
     apikey = "AIzaSyDvPsb9CRa-_a0RVt7CRuRpnKI38zMqDAM"
     authdomain = dburl.replace("https://", "")
+    secret_key = '"-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCiTLKeL0KcvWDz\nFC4iDtKPD4OiMOuhfolZjtiWrl5faKrNVKrajuO8FOVYGb8G53xV6fm46GXy0kWH\ngO3MpJn/e+2ZCcmfGnntvLm3pBUoDRSM5tUsKPWQQooU6uqjvGMV3DGVJGrktgcx\n+yOIiRulwwrp1iQKUzGDLZdADyTQs+z4EvZr3jQZ0BSSbTdkIBbkqjLPmdViTVPj\nlKWbOrqw34YTCYNw+2U3E6QrgyX2OhgsBlm7paI9nREOLNOTE5ZIvF4PYvckRESL\nTceGwbzXYxdUQMogmJwyGbv1F7aSlo2YZnjeXqB+U4yhPeZTURe9NbrPbdqIYCU7\n5SSshiDHAgMBAAECggEAS9NOfgXxdp4pvddXSFUpfWoPo0Z8x8oA7IUG3rsfXy7c\n4aplWk/4yOXwUm1Q6K5c0hzKrV9yRfSERG7xarMaOZkSI/ZFKt6pSW9rSwdPVRNr\nXvr3bDbEp33W2jf4oL/CgTOLPLUzdaAvk2PUMZVxA8wwfJgt5V8B2loB+I06s4Al\nbPKp5m9TxbtRhAFqKlOt6MXn3+RitDNW8IeitvJQ2iK8h1V+p2hMEChNlUBD0ivu\nE1RCAHu+Adko99kYfrlBmaekqJACv6RKpYB24hJoyalGhDnvIYluBSVYgqWMgCH9\nGFR7R+hTv9HrGbsCfk6Bl3YcMh4W4VxzuR4jevE6KQKBgQDYmZnI7j4gfTwhEKld\ndIZVGWP+w7VaMQYeZJcLK3OqqfXGYNkp0Or8SI5uNB92tJJTzVLGvLUuVykecfQG\ni5AyE4F7U8dfhUscErUhVNi9bR/iwF0JYROcj7euEAyncaJjZ3iafchZnYx3mwyo\nkWF+xgZVGqIuOYUa4J+Ug/cEeQKBgQC/0n5SKk1hfUHMbNE3AhNQpDNqPVyz3/i+\nkAEqy9cAEg2mPqT4BkCMYN2uJoedfoAHkJWWyzy76H/9L9E9PCOihdxu+UGCOmt8\n05ZxX9JoVyDAqDyI8oRFTBQB8muUuQgFKohLbQ+HxTfyho+327zjoAD1jw1F7sTK\njsJ5mqR/PwKBgQCmDnx8M0qmFd03bFKsN12VeHXVJ62ti9ApFO1HvvRabxriD/Xt\nvSGqcOXhT0yf8SgN32gKvToaYPBBSxPOwMi324R1THGZpdNDnoQHHclc0ICVkuzA\n+A/VA8nKRLuu08uvcfBgYPZs3gCG4fP+eBbK3n6UWGrmDWsig/tUHSgP4QKBgGMa\nWh8TMeVTNGJsOe7kiJwaKWITD8jyxu2VMrUsmQi1Sw3/wXVOrZyZEw69Y0VQLM87\nuL0uhVNDvJRPVxf+8R4vcIJ5Doo8qnnUSx6J9gfoM8i1YokSWpn+wzt6RnCQ4/7f\nSYlGcEah8tS/BpNj2IP1j2lOnfnqcQuBlCIFbkU7AoGAXQNW4VuSrFWE2mL2HnJU\n3k0h4Pe/wcaZj2JsslzdS+8qaBnGoyJ5VEH5KGvj3MPq4amhuLCeVVfPxxq2BsXv\nVccJ5dvdNIQ9vzSff4046sY7LzJ/nrnEJXmWoFAQYyCpo9LeP8Dku1IZq+9dKEaF\nM0CqvmCBLGZ/iIazzDtubtQ=\n-----END PRIVATE KEY-----\n"'
 
     config = {
         "apiKey": apikey,
@@ -45,25 +42,94 @@ def login(final_score):
     # Initialize Firebase
     firebase = pyrebase.initialize_app(config)
     auth = firebase.auth()
+    haveAccount = input("Do you have an account? (yes/no):").strip().lower()
+    if haveAccount == "yes" or haveAccount == "y":
+        email = input("Please key in your email: ")  # Example: ctd_is_the_best@ilovectd.com
+        password = input("Please type your password: ")    # Example: ctdctd
+    else:
+        promptcreate = input("Would you like to create an account? (yes/no):").strip().lower()
+        if promptcreate == "yes" or promptcreate == "y":
+            email = input("Please key in your email: ")
+            password = input("Please create your password: ")
+            userCredentials = auth.create_user_with_email_and_password(email, password)
+            #print(userCredentials)
+        else:
+            print("Logging in as Guest User...")
+            sleep(1)
+            email = "guestuser@game.com" # Example: ctd_is_the_best@ilovectd.com
+            password =  "ctdctd"  # Example: ctdctd
 
     # Authenticate the user
     try:
         user = auth.sign_in_with_email_and_password(email, password)
     except:
-        print("Authentication failed")
+        print("Authentication failed...")
         return
 
     db = firebase.database()
     user = auth.refresh(user['refreshToken'])
+    
+    score_key = f"users/{email.replace('.',',')}/score"  # Firebase keys cannot contain '.'
+    previous_score = db.child(score_key).get(user['idToken']).val()
+    
+    if email !="guestuser@game.com":
+        if previous_score is None:
+            db.child(score_key).set(final_score, user['idToken'])
+            score = db.child(score_key).get(user['idToken']).val()
+            print(f'Welcome to the Recycling Quiz Game and Congratulation on getting {score} point on your first try!')
+        elif previous_score < final_score:
+            # Update the total score in the database
+            db.child(score_key).set(final_score, user['idToken'])
 
-    # Update the total score in the database
-    score_key = f"users/{username.replace('.',',')}/score"  # Firebase keys cannot contain '.'
-    db.child(score_key).set(final_score, user['idToken'])
-    print("Your score has been updated in the database.")
+            # Retrieve and display the updated score
+            score = db.child(score_key).get(user['idToken']).val()
+            print(f"New high score {score} achieved! You're on fire! 🔥🎉")
+        else:
+            score = db.child(score_key).get(user['idToken']).val()
+            print (f"Keep pushing, you're {score-final_score} away from your high score! Don't give up! 👍🎮")
 
-    # Retrieve and display the updated score
-    score = db.child(score_key).get(user['idToken']).val()
-    print(f"Your total score is now: {score}")
+
+    # LEaderboard
+    
+    # users = db.child("users").get().val()
+    leaderboard = []
+    users = [
+    "ctd_is_the_best@ilovectd.com",
+    "deb123@hello.com",
+    "guestuser@game.com",
+    "jana123@sutd.suck"
+]
+    for email in users:
+        try:
+            # Authenticate each user
+            user = auth.sign_in_with_email_and_password(email, password)
+            auth.refresh(user['refreshToken'])
+
+            # Retrieve the score
+            score_key = f"users/{email.replace('.',',')}/score"
+            score = db.child(score_key).get(user['idToken']).val()
+
+            if score is not None:
+                leaderboard.append((email[:5], score))
+
+        except Exception as e:
+            print(f"Failed to retrieve score for {email}: {e}")
+
+    # Sort the leaderboard
+    leaderboard.sort(key=lambda x: x[1], reverse=True)
+
+    # Display the leaderboard
+    print("🏆 Leaderboard 🏆".center(width))
+    line = "-" * 30
+    print(line.center(width))
+    for rank, (user, score) in enumerate(leaderboard[:5], start=1):
+        user_display = user.split('@')[0]  # Display only the part before '@' in the email
+        print(f"{rank:2}. {user_display:15} Score: {score}".center(width))
+
+        print(line.center(width))
+        # print(f"Showing top {5} entries".center(width))
+        
+    
 
 print('-' * screen_width + "\n")
 def select_level(levels): # choose different diffculty 
@@ -92,6 +158,7 @@ def main_game_loop(levels):
         score_multiplier = level_number
         print('-' * screen_width + "\n")
         print(f"\nSTARTING {selected_level}...")
+        sleep(1)
         
         score = 0
         
@@ -102,16 +169,16 @@ def main_game_loop(levels):
                 give_feedback_Level_1(correct_answer, item)
                 score, quit_game = check_answer(user_guess, correct_answer, score, score_multiplier, selected_level)
 
-
             elif selected_level == "Level 2":
                 correct_answer = [option for option, (text, is_correct) in quiz_items[item].items() if is_correct][0]
                 score, quit_game = check_answer(user_guess, correct_answer, score, score_multiplier, selected_level)
                 give_feedback_Level_2(correct_answer , user_guess,item)
 
-            
+            elif selected_level == "Level 3":
+                correct_answer = levels[selected_level][item]
+                score, quit_game = check_answer(user_guess, correct_answer, score, score_multiplier, selected_level)
             if quit_game:
                 return total_score  # If user wants to quit
-
      
 
         total_score += score
@@ -125,6 +192,7 @@ def main_game_loop(levels):
 def display_question(item,selected_level): 
     if selected_level == "Level 1":
         return input(f"Is a '{item}' recyclable? (yes/no): ").strip().lower()
+    
     elif selected_level == "Level 2":
         # Displaying the multiple-choice question
         question = levels[selected_level][item]
@@ -132,6 +200,12 @@ def display_question(item,selected_level):
         for option in question:
             print(f"  {option}. {question[option][0]}")
         return input("Choose the correct option (a/b/c/d): ").strip().lower()
+    
+    elif selected_level == "Level 3":
+        question = levels["Level 3"][item]
+        print(f"Question: {item}")
+        lvl3_ans= input("Enter your answer:").strip().lower()
+        return lvl3_ans.strip().lower()
 
 def give_feedback_Level_1(correct_answer, item):
     explanation = "Recyclable" if correct_answer else "Not recyclable"
@@ -139,6 +213,7 @@ def give_feedback_Level_1(correct_answer, item):
     print('-' * screen_width + "\n")
     # Here you can add more detailed explanations
     print()
+
 def give_feedback_Level_2(correct_answer, user_guess, item):
     explanations = {
         "How many times can glass be recycled?": "Glass can be recycled indefinitely without losing quality.",
@@ -161,8 +236,8 @@ def end_game_summary(score, total_items):
     print("Thank you for playing! Remember, every small step in recycling helps our planet.")
 
 def check_answer(user_guess, correct_answer, score, score_multiplier, level):
-    quit_game = False
 
+    quit_game = False
     if user_guess == "quit":
         quit_game = True
         return score, quit_game
@@ -184,6 +259,14 @@ def check_answer(user_guess, correct_answer, score, score_multiplier, level):
                 
         else:
             print("Invalid option selected!")
+    elif level == "Level 3":
+        for i in levels["Level 3"]:
+            if user_guess == correct_answer:
+                print("Correct!")
+                score += 1 * score_multiplier
+                break
+        else:
+            print("Incorrect!")
 
     return score, quit_game
 
@@ -192,12 +275,8 @@ levels = {
     "Level 1": { #TRUE-FALSE
         "Plastic bottle": True,
         "Styrofoam cup": False,
-        "Food Waste" : False,
         "Cardboard": True,
         "Glass Jar" :True,
-        "Paper": True,
-        "Used pizza boxes":False,
-        "Light bulbs":False,
         "Ceramics and porcelain":False,
         "Magazine":True
         
@@ -236,11 +315,12 @@ levels = {
         }
     },
     
-    "Level 3": { #OPEN-ENDED
-        "q1": "correct ans",
-        "question2": "correct answer",
-        "question3": "correct answer",
-        "question4": "correct answer"
+
+    "Level 3": {
+        "What is the term for using water to separate materials that sink from those that float in the recycling process?": "hydrocyclone separation",
+        "Name a common household item that can be recycled into fiber for making new clothing.": "plastic bottles",
+        "What is the term for decomposing organic waste, like food scraps and yard waste, into a soil conditioner?": "composting",
+        "Why is it important to rinse containers before recycling them?": "to remove food residue and prevent contamination."   
     }
     # Add more levels as needed
 }
@@ -250,11 +330,9 @@ if __name__ == "__main__":
     introduction(width)
     final_score = main_game_loop(levels)
     login(final_score)
-    print(f"\nYour total score is {final_score}.")
     print('=' * width + "\n")
-    print("""
-          
-          THANK YOU FOR PLAYING!
-
-          Remember, every small step in recycling helps our planet""" + "\n".center(width))
+    print(f"Your final score is {final_score}.".center(width))
+    message = "THANK YOU FOR PLAYING!\n\nRemember, every small step in recycling helps our planet"
+    for lineee in message.split('\n'):
+        print(lineee.center(width))
     print('=' * width)
