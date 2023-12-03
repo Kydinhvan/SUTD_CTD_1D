@@ -89,15 +89,14 @@ def login(final_score):
             print (f"Keep pushing, you're {score-final_score} away from your high score! Don't give up! 👍🎮")
 
 
-    # LEaderboard
+    # Leaderboard
     
     # users = db.child("users").get().val()
     leaderboard = []
     users = [
     "ctd_is_the_best@ilovectd.com",
     "deb123@hello.com",
-    "guestuser@game.com",
-    "jana123@sutd.suck"
+    "guestuser@game.com"
 ]
     for email in users:
         try:
