@@ -96,7 +96,8 @@ def login(final_score):
     users = [
     "ctd_is_the_best@ilovectd.com",
     "deb123@hello.com",
-    "guestuser@game.com"
+    "guestuser@game.com",
+    "dvk22@ih.sd"
 ]
     for email in users:
         try:
